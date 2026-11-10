@@ -1,0 +1,899 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Université Horizon Atlantique</title>
+<meta name="description" content="Site de l’Université Horizon Atlantique">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Figtree:wght@400;500;600&display=swap">
+<style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<title>Université Horizon Atlantique</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Figtree:wght@400;500;600&display=swap">
+<style>
+/* Layout: barre utilitaire + menu horizontal, bandeau d'annonce plein largeur, actualités en cartes avec colonne d'événements, formations, pied de page. */
+:root{
+  --bg:#faf9fc; --surface:#ffffff; --fg:#1d1530; --muted:#5f566f; --line:#e4dfee;
+  --brand:#3a1f78; --brand-fg:#ffffff; --brand-deep:#241049;
+  --accent:#e8590c; --accent-fg:#ffffff; --tint:#efeafa;
+  --f-display:"Bricolage Grotesque","Trebuchet MS",sans-serif;
+  --f-body:"Figtree","Segoe UI",system-ui,sans-serif;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --bg:#eeedef; --surface:#1c1432; --fg:#0f091e; --muted:#b2a8c6; --line:#34294f;
+  --brand:#8f6df2; --brand-fg:#130d22; --brand-deep:#0d0818;
+  --accent:#ff8a3d; --accent-fg:#130d22; --tint:#241a3f; color-scheme:dark}}
+:root[data-theme="dark"]{ 
+  --bg:#130d22; --surface:#eeecf1; --fg:#f1edfa; --muted:#b2a8c6; --line:#34294f;
+  --brand:#8f6df2; --brand-fg:#e4e0ec; --brand-deep:#0d0818;
+  --accent:#ff8a3d; --accent-fg:#130d22; --tint:#241a3f; color-scheme:dark}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--fg);font:400 16px/1.6 var(--f-body);padding-inline:0}
+a{color:inherit;text-decoration:none}
+a:focus-visible,button:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
+.wrap{max-width:1180px;margin-inline:auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+h1,h2,h3{font-family:var(--f-display);line-height:1.12;text-wrap:balance;margin:0}
+
+/* utility bar */
+.util{background:var(--brand-deep);color:#d9d0f0;font-size:13px}
+.util .wrap{display:flex;gap:8px 20px;justify-content:space-between;align-items:center;flex-wrap:wrap;padding-block:7px}
+.util nav{display:flex;gap:18px;flex-wrap:wrap}
+.util a:hover{color:#fff;text-decoration:underline}
+
+/* header */
+header.top{background:var(--surface);border-bottom:1px solid var(--line);position:sticky;top:env(safe-area-inset-top,0px);z-index:20}
+.bar{display:flex;align-items:center;gap:16px;padding-block:10px}
+.logo{display:flex;align-items:center;gap:10px;font-family:var(--f-display);font-weight:800;line-height:1.05}
+.logo svg{width:44px;height:44px;flex:none}
+.logo small{display:block;font:500 11px var(--f-body);letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin-top:3px}
+.logo b{font-size:18px;color:var(--brand)}
+nav.main{margin-left:auto}
+nav.main ul{display:flex;list-style:none;margin:0;padding:0;gap:2px}
+nav.main a{display:block;padding:12px 11px;font:600 13px var(--f-body);letter-spacing:.06em;text-transform:uppercase;border-bottom:3px solid transparent}
+nav.main a:hover,nav.main a[aria-current]{border-color:var(--accent);color:var(--brand-fg)}
+.tools{display:flex;gap:8px}
+.ib{width:42px;height:42px;border-radius:50%;border:1px solid var(--line);background:var(--tint);color:var(--brand);cursor:pointer;display:grid;place-items:center;font:600 13px var(--f-body)}
+.ib:hover{background:var(--brand);color:var(--brand-fg)}
+#burger{display:none}
+@media(max-width:900px){
+  #burger{display:grid}
+  nav.main{display:none;position:absolute;left:0;right:0;top:100%;background:var(--surface);border-bottom:1px solid var(--line);padding:8px max(16px,env(safe-area-inset-left,0px))}
+  nav.main.open{display:block}
+  nav.main ul{flex-direction:column}
+  .tools{margin-left:auto}
+}
+
+/* hero banner */
+.hero{background:radial-gradient(120% 140% at 85% 20%,#5a2fb8 0%,var(--brand-deep) 60%);color:#fff;overflow:hidden;position:relative}
+.hero .wrap{display:grid;grid-template-columns:1.25fr .75fr;gap:32px;align-items:center;padding-block:56px}
+.hero h1{font-size:clamp(28px,4.4vw,50px);font-weight:800}
+.hero h1 em{font-style:normal;color:#ffb067}
+.hero p{max-width:52ch;color:#e5defa;font-size:18px;margin:18px 0 0}
+.deadline{margin-top:24px;display:flex;gap:16px;flex-wrap:wrap;align-items:center}
+.deadline .d{font:700 15px var(--f-display);background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.28);padding:10px 16px;border-radius:6px}
+.btn{display:inline-flex;align-items:center;gap:8px;background:var(--accent);color:var(--accent-fg);font:700 15px var(--f-body);padding:13px 22px;border-radius:6px;border:0;cursor:pointer}
+.btn:hover{filter:brightness(1.08)}
+.ring{width:100%;max-width:340px;justify-self:center;aspect-ratio:1}
+.dots{position:absolute;left:max(16px,env(safe-area-inset-left,0px));bottom:16px;display:flex;gap:8px}
+.dots button{width:30px;height:5px;border:0;border-radius:3px;background:rgba(255,255,255,.35);cursor:pointer;padding:0}
+.dots button[aria-current]{background:#fff}
+@media(max-width:800px){.hero .wrap{grid-template-columns:1fr;padding-block:40px 56px}.ring{max-width:200px}}
+
+/* quick access */
+.quick{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:12px;margin-top:-28px;position:relative;z-index:2}
+.quick a{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:16px;font:700 15px var(--f-display);display:flex;flex-direction:column;gap:6px;box-shadow:0 6px 18px rgba(36,16,73,.1)}
+.quick a span{font:400 13px var(--f-body);color:var(--muted)}
+.quick a:hover{border-color:var(--accent)}
+
+section{padding-block:56px}
+.head{display:flex;justify-content:space-between;align-items:end;gap:16px;flex-wrap:wrap;margin-bottom:26px}
+.head h2{font-size:clamp(24px,3vw,34px)}
+.head h2::after{content:"";display:block;width:56px;height:4px;background:var(--accent);margin-top:10px;border-radius:2px}
+.more{color:var(--accent);font-weight:700}
+.more:hover{text-decoration:underline}
+:root:not([data-theme="dark"]) .more{color:#c2410c}
+
+/* news */
+.newsgrid{display:grid;grid-template-columns:2fr 1fr;gap:28px}
+.cards{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:22px}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:10px;overflow:hidden;display:flex;flex-direction:column}
+.thumb{aspect-ratio:16/9;position:relative;display:flex;align-items:flex-end;padding:12px}
+.thumb span{background:rgba(255,255,255,.92);color:#241049;font:700 11px var(--f-body);letter-spacing:.08em;text-transform:uppercase;padding:4px 8px;border-radius:4px}
+.t1{background:linear-gradient(135deg,#3a1f78,#8f6df2)}
+.t2{background:linear-gradient(135deg,#e8590c,#ffb067)}
+.t3{background:linear-gradient(135deg,#0f766e,#5eead4)}
+.t4{background:linear-gradient(135deg,#1e3a8a,#60a5fa)}
+.card .body{padding:18px;display:flex;flex-direction:column;gap:10px;flex:1}
+.card time{font-size:13px;color:var(--muted)}
+.card h3{font-size:19px}
+.card p{margin:0;color:var(--muted);font-size:15px}
+.read{margin-top:auto;font-weight:700;display:flex;justify-content:space-between;align-items:center;padding-top:8px;color:var(--brand)}
+.card:hover{border-color:var(--brand)}
+.ev{display:grid;grid-template-columns:54px 1fr;gap:14px;padding:14px 0;border-top:1px solid var(--line)}
+.ev:first-of-type{border-top:0}
+.day{background:var(--tint);color:var(--brand);border-radius:8px;text-align:center;font:800 20px/1 var(--f-display);padding:8px 0}
+.day small{display:block;font:600 10px var(--f-body);letter-spacing:.1em;text-transform:uppercase;margin-top:3px}
+.ev b{display:block;line-height:1.3}
+.ev span{font-size:13px;color:var(--muted)}
+@media(max-width:900px){.newsgrid{grid-template-columns:1fr}}
+@media(max-width:560px){.cards{grid-template-columns:1fr}}
+
+/* formations */
+.alt{background:var(--tint)}
+.facs{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:18px}
+.fac{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:22px;display:flex;flex-direction:column;gap:8px}
+.fac .ic{width:44px;height:44px;border-radius:10px;background:var(--brand);color:var(--brand-fg);display:grid;place-items:center;font:800 15px var(--f-display)}
+.fac h3{font-size:18px}
+.fac p{margin:0;color:var(--muted);font-size:15px}
+.fac .n{font-size:13px;font-weight:600;color:var(--brand);margin-top:auto;padding-top:8px}
+.ch {
+    display: block;
+    text-align: center;
+    color: orange;
+    margin: 0 auto;
+    font-size: 20px;
+}
+
+/* stats */
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:20px}
+.stats b{display:block;font:900 50px/1 var(--f-display);color:var(--brand-deep);font-variant-numeric:tabular-nums}
+.stats span{color:var(--brand-deep);font-size:15px}
+
+
+/* footer */
+footer{background:var(--brand-deep);color:#ebe5e5;font-size:14px}
+footer .wrap{padding-block:44px 28px}
+.fcols{display:grid;grid-template-columns:1.4fr 1fr 1fr 1fr;gap:28px}
+footer h4{font:700 14px var(--f-display);letter-spacing:.08em;text-transform:uppercase;color:#fff;margin:0 0 12px}
+footer ul{list-style:none;margin:0;padding:0;display:grid;gap:7px}
+footer a:hover{color:#fff;text-decoration:underline}
+.copy{border-top:1px solid hsl(232, 84%, 65%);margin-top:30px;padding-top:30px;font-size:10px}
+@media(max-width:800px){.fcols{grid-template-columns:1fr 1fr}}
+@media(max-width:480px){.fcols{grid-template-columns:1fr}}
+@media(prefers-reduced-motion:no-preference){.card,.quick a{transition:border-color .15s,transform .15s}.card:hover,.quick a:hover{transform:translateY(-2px)}}
+
+/* NOS FORMATIONS ET ADMISSION */
+.formation-admission {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  width: 100%;
+  margin: 0;
+}
+
+.fa-box {
+  min-height: 300px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  color: white;
+  text-align: center;
+  transition: filter .3s;
+}
+
+.fa-box:hover {
+  filter: brightness(.93);
+}
+
+.fa-formation {
+  background: #f79418;
+  color: #000;
+}
+
+.fa-admission {
+  background: #087db3;
+  color: white;
+}
+
+.fa-content {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 45px;
+  width: 100%;
+  padding: 30px;
+}
+
+.fa-content svg {
+  width: 65px;
+  height: 65px;
+  fill: currentColor;
+  flex-shrink: 0;
+}
+
+.fa-content h2 {
+  font-family: var(--f-display);
+  font-size: clamp(22px, 3vw, 38px);
+  font-weight: 800;
+  text-transform: uppercase;
+}
+
+.fa-arrow {
+  position: absolute;
+  right: 8%;
+  bottom: 30%;
+  font-size: 38px;
+  transition: transform .2s;
+}
+
+.fa-box:hover .fa-arrow {
+  transform: translateX(10px);
+}
+
+/* Vision, valeurs et axes stratégiques */
+.strategie-links {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  text-align: center;
+  padding: 65px 20px;
+  background: #ffffff;
+  gap: 20px;
+  color: #171717;
+}
+
+.strategie-links a {
+  font-family: var(--f-display);
+  font-size: 28px;
+  font-weight: 700;
+  color: #171717;
+}
+
+.strategie-links a:hover { color: #f79418; }
+
+@media(max-width:650px) {
+  .formation-admission {
+    grid-template-columns: 1fr;
+    margin: 0 12px;
+  }
+
+  .fa-box {
+    min-height: 230px;
+  }
+
+  .fa-content {
+    gap: 20px;
+  }
+
+  .fa-content svg {
+    width: 45px;
+    height: 45px;
+  }
+
+  .fa-arrow {
+    right: 7%;
+    bottom: 15%;
+  }
+
+  .strategie-links {
+    grid-template-columns: 1fr;
+    padding: 35px 15px;
+    gap: 25px;
+  }
+}
+
+/* =================================
+   ACTUALITES : 3 COLONNES
+================================= */
+
+#actus {
+    background: #ffffff;
+    padding: 30px 14px 55px;
+    color: #171717;
+}
+
+/* GRILLE PRINCIPALE */
+
+.actualites-layout {
+    max-width: 1800px;
+    margin: auto;
+
+    display: grid;
+    grid-template-columns: 1fr 1fr 0.8fr;
+
+    gap: 30px;
+    align-items: stretch;
+}
+
+/* PREMIERE ET DEUXIEME COLONNES */
+
+.actualite-card {
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+/* IMAGES */
+
+.actualite-card img {
+    width: 100%;
+    height: 250px;
+    object-fit: cover;
+    display: block;
+}
+
+/* CONTENU DES ACTUALITES */
+
+.actualite-card .contenu {
+    flex: 1;
+    padding: 35px 40px;
+    background: #f8f8f8;
+}
+
+.actualite-card h3 {
+    font-size: 25px;
+    font-weight: 800;
+    line-height: 1.8;
+    margin: 0 0 20px;
+}
+
+.actualite-card time {
+    display: block;
+    color: #aaa;
+    font-size: 16px;
+    margin: 20px 0;
+}
+
+.actualite-card p {
+    font-size: 25px;
+    line-height: 1.7;
+    margin: 15px 0;
+    color: #333;
+}
+
+/* FOND JAUNE DE LA DEUXIEME COLONNE */
+
+.actualite-jaune .contenu {
+    background: #ffc638;
+}
+
+/* LIEN LIRE LA SUITE */
+
+.actualite-card .read {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: #000;
+    font-size: 23px;
+    font-weight: 800;
+    margin-top: 20px;
+}
+
+.actualite-card .read span {
+    font-size: 35px;
+}
+
+/* TROISIEME COLONNE : COMMUNIQUES */
+
+.communiques {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    min-width: 0;
+}
+
+/* CARTES DES COMMUNIQUES */
+
+.comm-card {
+    background: #ffffff;
+    box-shadow: 0 3px 15px rgba(0,0,0,0.10);
+    border-radius: 5px;
+    overflow: hidden;
+    margin: 0;
+}
+
+/* TITRES VERTS */
+
+.comm-card a {
+    display: block;
+    padding: 25px 40px;
+    color: #079b50;
+    font-size: 23px;
+    line-height: 1.7;
+    font-weight: 400;
+}
+
+/* DATES */
+
+.comm-card time {
+    display: block;
+    border-top: 1px solid #e5e5e5;
+    padding: 20px 40px;
+    font-size: 23px;
+    color: #0b0906;
+}
+
+/* RESPONSIVE TABLETTE */
+
+@media (max-width: 1000px) {
+
+    .actualites-layout {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .communiques {
+        grid-column: 1 / -1;
+    }
+}
+
+/* RESPONSIVE TELEPHONE */
+
+@media (max-width: 600px) {
+
+    .actualites-layout {
+        grid-template-columns: 1fr;
+        gap: 25px;
+    }
+
+    .communiques {
+        grid-column: auto;
+    }
+
+    .actualite-card img {
+        height: 220px;
+    }
+
+    .actualite-card .contenu {
+        padding: 25px;
+    }
+
+    .actualite-card h3 {
+        font-size: 20px;
+    }
+
+    .actualite-card p {
+        font-size: 18px;
+    }
+
+    .comm-card a,
+    .comm-card time {
+        font-size: 18px;
+        padding: 18px 22px;
+    }
+}
+
+/* HEADER : FOND BLANC ET TEXTES NOIRS */
+header.top {
+  background: #ffffff;
+  color: #000000;
+  border-bottom: 1px solid #e5e5e5;
+}
+
+header.top .logo,
+header.top .logo b,
+header.top nav.main a {
+  color: #000000;
+}
+
+header.top nav.main a:hover,
+header.top nav.main a[aria-current] {
+  color: #f79418;
+  border-bottom-color: #f79418;
+}
+
+header.top .ib {
+  background: #ffffff;
+  color: #000000;
+  border: 1px solid #dddddd;
+}
+
+header.top .ib:hover {
+  background: #f79418;
+  color: #ffffff;
+}
+
+/* MENU MOBILE */
+@media(max-width:900px) {
+  header.top nav.main {
+    background: #ffffff;
+    border-bottom: 1px solid #dddddd;
+  }
+
+  header.top nav.main a {
+    color: #000000;
+  }
+}
+
+/* FOOTER : FOND BLANC ET TEXTES NOIRS */
+footer {
+  background: #ffffff;
+  color: #000000;
+  border-top: 1px solid #eeeeee;
+  font-size: 14px;
+}
+
+footer h4 {
+  color: #026b9f;
+}
+
+footer a {
+  color: #000000;
+}
+
+footer a:hover {
+  color: #034285;
+  text-decoration: underline;
+}
+
+footer .copy {
+  color: #ffffff;
+  border-top: 1px solid #1014de;
+  background: #026b9f;
+  font-size: 20px;
+  width: 100%;
+  padding: 16px 20px;
+  margin-left: 0;
+  margin-right: 0;
+}
+
+/* ADRESSE ET CONTACT */
+footer ul li {
+  color: #000000;
+}
+
+/* LOGO ET IDENTITE */
+.logo small { color: #555555; }
+
+/* DIAPORAMA : une seule bannière visible à la fois */
+.hero {
+  width: 100%;
+  padding: 0;
+  background: #241049;
+  overflow: hidden;
+}
+.hero .wrap {
+  display: block;
+  width: 100%;
+  max-width: none;
+  padding: 0;
+  margin: 0;
+}
+#slide {
+  position: relative;
+  width: 100%;
+  height: clamp(180px, 32vw, 420px);
+  overflow: hidden;
+}
+#slide img {
+  position: absolute;
+  inset: 0;
+  display: block;
+  width: 100%;
+  height: 120%;
+  max-width: none;
+  object-fit: cover;
+  opacity: 0;
+  transition: opacity .8s ease-in-out;
+}
+#slide img.active { opacity: 1; }
+#dots {
+  position: absolute;
+  z-index: 2;
+  left: 50%;
+  bottom: 14px;
+  transform: translateX(-50%);
+  display: flex;
+  justify-content: center;
+  gap: 9px;
+  width: auto;
+  margin: 0;
+}
+#dots button {
+  width: 11px;
+  height: 11px;
+  padding: 0;
+  border: 1px solid #fff;
+  border-radius: 50%;
+  background: rgba(255,255,255,.5);
+  cursor: pointer;
+}
+#dots button[aria-current="true"] { background: #fff; }
+@media (prefers-reduced-motion: reduce) { #slide img { transition: none; } }
+
+/* Images UN-CHK en pleine largeur */
+.stats-images {
+  display: flex;
+  width: 100%;
+  justify-content: center;
+  gap: 0px;
+  padding: 20px;
+}
+
+.stats-images a {
+  flex: 1;
+}
+
+.stats-images img {
+  width: 100%;
+  height: 300px;
+  object-fit: cover;
+  display: block;
+}
+
+@media (max-width: 650px) {
+  .stats-images {
+    flex-direction: column;
+  }
+}
+</style>
+</head>
+<body>
+
+<header class="top"><div class="wrap bar">
+  <a class="logo" href="#" aria-label="Université Horizon Atlantique, accueil">
+    <img src="Logo.png" alt="Logo de l’université" width="170" height="40">
+  </a>
+  <nav class="main" id="menu" aria-label="Navigation principale"><ul>
+    <li><a href="#" aria-current="page">Accueil</a></li>
+    <li><a href="#">Institution</a></li>
+    <li><a href="#formations">Formations</a></li>
+    <li><a href="#actus">Actualités</a></li>
+    <li><a href="#">Recherche</a></li>
+    <li><a href="#">Vie étudiante</a></li>
+    <li><a href="#">Services à la communauté</a></li>
+    <li><a href="#">Contact</a></li>
+  </ul></nav>
+  <div class="tools">
+    <button class="ib" id="theme" aria-label="Changer de thème">◐</button>
+    <button class="ib" id="burger" aria-label="Ouvrir le menu" aria-expanded="false">☰</button>
+  </div>
+</div></header>
+
+<div class="hero" id="hero">
+    <div class="wrap">
+        <div id="slide">
+            <img src="baniere1.jpg" alt="Bannière 1">
+            <img src="baniere2.png" alt="Bannière 2">
+            <img src="baniere3.png" alt="Bannière 3">
+            <img src="baniere4.png" alt="Bannière 4">
+            <img src="baniere5.png" alt="Bannière 5">
+        </div>
+
+        <div class="dots" id="dots"></div>
+    </div>
+</div>
+
+<!-- NOS FORMATIONS ET ADMISSION -->
+<div class="formation-admission" id="formations">
+
+  <a href="#formations" class="fa-box fa-formation">
+    <div class="fa-content">
+      <svg viewBox="0 0 64 64" aria-hidden="true">
+        <circle cx="32" cy="10" r="10"/>
+        <path d="M4 23 Q18 17 29 25 V57 Q16 49 4 53 Z"/>
+        <path d="M60 23 Q46 17 35 25 V57 Q48 49 60 53 Z"/>
+      </svg>
+      <h2>Nos formations</h2>
+    </div>
+    <span class="fa-arrow">→</span>
+  </a>
+
+  <a href="#admission" id="admission" class="fa-box fa-admission">
+    <div class="fa-content">
+      <svg viewBox="0 0 64 64" aria-hidden="true">
+        <path d="M5 12 Q5 8 10 8 H29 L36 15 H54 Q59 15 59 20 V23 H22 Q18 23 15 27 L5 43 Z"/>
+        <path d="M21 28 Q23 26 27 26 H61 L49 48 Q47 52 43 52 H5 Q1 52 4 47 Z"/>
+      </svg>
+      <h2>Admission</h2>
+    </div>
+    <span class="fa-arrow">→</span>
+  </a>
+
+</div>
+
+<!-- VISION, VALEURS ET AXES STRATEGIQUES -->
+<div class="strategie-links">
+  <a href="#vision">Vision</a>
+  <a href="#valeurs">Valeurs</a>
+  <a href="#axes">Axes Stratégiques</a>
+</div>
+
+<!-- SECTION ACTUALITES : 3 COLONNES -->
+<section id="actus">
+
+    <div class="actualites-layout">
+
+        <!-- COLONNE 1 -->
+        <article class="actualite-card">
+
+            <img src="article.jpg" alt="Actualité UN-CHK">
+
+            <div class="contenu">
+                <h3>
+                    Le groupe de recherche ALIVE de l’UN-CHK
+                    publie les résultats d’une enquête nationale
+                    sur l’IA générative dans l’enseignement
+                    supérieur sénégalais
+                </h3>
+
+                <time>3 novembre 2026</time>
+
+                <p>
+                    « Entre adoption et inquiétude : l’IA générative
+                    dans l’enseignement supérieur sénégalais »,
+                    tel est l’intitulé du rapport produit et publié
+                    par le groupe de recherche.
+                </p>
+
+                <a href="#" class="read">
+                    Lire la suite <span>→</span>
+                </a>
+            </div>
+        </article>
+
+        <!-- COLONNE 2 -->
+        <article class="actualite-card actualite-jaune">
+
+            <img src="article2.jpg" alt="Salon Connect Emploi">
+
+            <div class="contenu">
+                <h3>
+                    1ère édition du Salon hybride Connect’Emploi :
+                    FORCE-N renforce la passerelle entre les jeunes
+                    et le monde de l’entreprise
+                </h3>
+
+                <time>30 octobre 2026</time>
+
+                <p>
+                    Le Grand Théâtre de Dakar a accueilli, le mardi
+                    27 octobre 2026, la première édition de
+                    Connect’Emploi, un salon hybride dédié à l’emploi.
+                </p>
+
+                <a href="#" class="read">
+                    Lire la suite <span>→</span>
+                </a>
+            </div>
+        </article>
+
+        <!-- COLONNE 3 -->
+        <aside class="communiques">
+
+            <div class="comm-card">
+                <a href="#">
+                    Démarrage des cours du semestre 2
+                    de la promotion 13
+                </a>
+                <time>9 novembre 2026</time>
+            </div>
+
+            <div class="comm-card">
+                <a href="#">
+                    Participation de l’UN-CHK au concours
+                    « Ma thèse en 180 secondes » (MT180S)
+                    Édition 2026
+                </a>
+                <time>29 octobre 2026</time>
+            </div>
+
+            <div class="comm-card">
+                <a href="#">
+                    Amphithéâtre de rentrée de la Formation
+                    continue au titre de l’année académique
+                    2026-2027
+                </a>
+                <time>29 octobre 2026</time>
+            </div>
+
+            <div class="comm-card">
+                <a href="#">
+                    Lancement de la deuxième phase de distribution
+                    des kits de connectivité
+                </a>
+                <time>29 octobre 2026</time>
+            </div>
+
+        </aside>
+
+  <a href="#" class="plus-communiques">Plus de communiqués</a>
+    </div>
+</section>
+
+
+
+
+<section><div class="stats-images">
+  <a href="#"><img src="1ere.png" alt=""></a>
+  <a href="#"><img src="2ere.png" alt=""></a>
+  <a href="#"><img src="3ere.png" alt=""></a>
+</div>
+<section>
+  <div class="stats">
+    <div><b>73 797</b><span>ETUDIANTS</span></div>
+    <div><b>425</b><span>PATS</span></div>
+    <div><b>536</b><span>ENSEIGNANTS ASSOCIES</span></div>
+    <div><b>638</b><span>Tuteurs</span></div>
+  </div>
+</div>
+</section>
+
+<div><Span class="ch" >plus de chiffres</Span></div>
+<section> <div><a href="#"><img src="4ere.png" alt="" height="500" width="1500"></a></div>
+</section>
+ 
+</section>
+
+<footer><div  class="wrap">
+   <div class="fcols">
+  <div><h4>A PROPOS DE L'UN-CHK</h4><ul><li><a href="#">Présentation</a></li><li><a href="#">Gouvernance</a></li><li><a href="#">Organigramme</a></li><li><a href="#">Directions et pôles</a></li></ul></div>
+    <div><h4>NOS FORMATIONS</h4><ul><li><a href="#">Formation initiale</a></li><li><a href="#">Formation continue</a></li></ul></div>
+    <div><h4>LIENS UTILES</h4><ul><li><a href="#">MESRI</a></li><li><a href="#">ANSTS</a></li><li><a href="#">CAMES</a></li><li><a href="#">ANAQ-Sup</a></li><li><a href="#">AUF</a></li></ul></div>
+    <div><h4>CONTACT</h4><ul><li>Cité du savoir – Diamniadio, Castors, avenue Bourguiba, rue n°13</li><li>+221 30 108 41 53-</li><li>contact@unchk.edu.sn</li></ul></div>
+  </div>
+    </div>
+
+  <div class="copy">Copyright © 2025 UN-CHK. Tous les droits sont réservés.</div>
+</div></footer>
+
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+  // Diaporama des cinq bannières
+  const images = Array.from(document.querySelectorAll("#slide img"));
+  const dotsContainer = document.getElementById("dots");
+  let currentIndex = 0;
+  let timer = null;
+
+  function showImage(index) {
+    images.forEach((image, i) => {
+      image.classList.toggle("active", i === index);
+      image.setAttribute("aria-hidden", i === index ? "false" : "true");
+    });
+    dotsContainer.querySelectorAll("button").forEach((button, i) => {
+      if (i === index) button.setAttribute("aria-current", "true");
+      else button.removeAttribute("aria-current");
+    });
+    currentIndex = index;
+  }
+
+  function nextImage() {
+    showImage((currentIndex + 1) % images.length);
+  }
+
+  function startSlideshow() {
+    window.clearInterval(timer);
+    if (images.length > 1 && !window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+      timer = window.setInterval(nextImage, 3000);
+    }
+  }
+
+  if (images.length && dotsContainer) {
+    images.forEach((image, index) => {
+      const button = document.createElement("button");
+      button.type = "button";
+      button.setAttribute("aria-label", "Afficher la bannière " + (index + 1));
+      button.addEventListener("click", function () {
+        showImage(index);
+        startSlideshow();
+      });
+      dotsContainer.appendChild(button);
+    });
+    showImage(0);
+    startSlideshow();
+  }
+
+  // Menu mobile
+  const burger = document.getElementById("burger");
+  const menu = document.getElementById("menu");
+  if (burger && menu) {
+    burger.addEventListener("click", function () {
+      const isOpen = menu.classList.toggle("open");
+      burger.setAttribute("aria-expanded", String(isOpen));
+    });
+  }
+
+  // Bouton clair / sombre
+  const themeButton = document.getElementById("theme");
+  if (themeButton) {
+    themeButton.addEventListener("click", function () {
+      const root = document.documentElement;
+      const isDark = root.getAttribute("data-theme") === "dark" ||
+        (!root.getAttribute("data-theme") && window.matchMedia("(prefers-color-scheme: dark)").matches);
+      root.setAttribute("data-theme", isDark ? "light" : "dark");
+    });
+  }
+});
+</script>
+
+</body>
+</html>
